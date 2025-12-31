@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    image: port-demo-app
+    environment:
+      - APP_PORT=8000
+    ports:
+      - "8080:8000"
