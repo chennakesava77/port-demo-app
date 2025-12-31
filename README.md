@@ -99,21 +99,26 @@ port-demo-app/
 
 ## Architecture Diagram
 
-flowchart TB
-    U[👤 User / Browser<br/>http://localhost:9090]
+flowchart TD
+    User[User] -->|HTTP Request: HostPort 8000| Host[Host Machine]
+    Host -->|Docker Port Mapping: HostPort 8000 → ContainerPort 5000| DockerCompose[Docker Compose]
+    DockerCompose --> AppContainer[Application Container]
+    AppContainer -->|App listens on $APP_PORT (5000)| App[FastAPI/Express App]
+    App -->|Response /health, /| User
 
-    H[💻 Host Machine<br/>Port 9090]
+    subgraph Notes
+        note1["Host Port: 8000 (accessible from browser)"]
+        note2["Container Port: 5000 (internal app port)"]
+        note3["App reads port from environment variable $APP_PORT"]
+    end
 
-    DC[🐳 Docker Compose]
+    Host --- note1
+    AppContainer --- note2
+    App --- note3
 
-    C[📦 Application Container]
 
-    A[🚀 FastAPI Application<br/>APP_PORT=8000]
+(https://github.com/user-attachments/assets/b01b910c-d427-4ee1-81da-60f41e7009e0)
 
-    U -->|HTTP Request| H
-    H -->|Port Mapping<br/>9090 → 8000| DC
-    DC --> C
-    C -->|Listens on| A
 
 
 
@@ -143,4 +148,5 @@ flowchart TB
 
     
     
+
 
