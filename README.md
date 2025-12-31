@@ -49,6 +49,9 @@ containerized using Docker, orchestrated with Docker Compose, and automated usin
        curl http://localhost:8000/
        curl http://localhost:8000/health
 
+       <img width="1920" height="1080" alt="Screenshot (17)" src="https://github.com/user-attachments/assets/2b63bb66-afa6-4e40-a9b6-2f2bcd12e034" />
+
+
    *next run the docker with single container to create docker image
       docker build -t port-demo-app .
 
@@ -140,3 +143,4 @@ flowchart TB
 
     
     
+
